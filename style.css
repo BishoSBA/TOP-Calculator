@@ -1,0 +1,30 @@
+body {
+    font-family: "sans-serif";
+    font-size: 2em;
+    margin: 0;
+  }
+  
+  .header {
+    width: auto;
+    text-align: center;
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+    margin: 5%;
+  }
+  
+  td {
+    padding: 0%;
+    width: 0%;
+  }
+
+  button {
+    height:10em;
+    width: 10em;
+  }
+
+  #equal {
+    height: 20em;
+  }
