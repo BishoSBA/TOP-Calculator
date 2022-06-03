@@ -1,29 +1,86 @@
-let numberA = 0;
-let numberB = 0;
+let numberA = "";
+let numberB = "";
 let operation = "";
+let memoryText = "";
+let currentResult = "";
+const symbol = {
+	add: "+",
+	subtract: "-",
+	multiply: "x",
+	divide: "/",
+};
+const memory = document.querySelector(".memory p");
+const display = document.querySelector(".display p");
+const numberBtns = document.querySelectorAll(".numbers");
+const opBtns = document.querySelectorAll(".op");
+const equal = document.querySelector("#equal");
 
-function calculate(op) {
-	switch (op) {
+function calculate() {
+	let a = 0;
+	let b = 0;
+	if (currentResult) {
+		a = parseFloat(currentResult);
+	} else {
+		a = parseFloat(numberA);
+	}
+	b = parseFloat(numberB);
+	console.log(a, b);
+	switch (operation) {
 		case "add":
-			return a + b;
+			currentResult = a + b;
+			break;
 		case "subtract":
-			return a - b;
+			currentResult = a - b;
+			break;
 		case "multiply":
-			return a * b;
+			currentResult = a * b;
+			break;
 		case "divide":
-			return a / b;
+			currentResult = a / b;
+			break;
+	}
+	currentResult = currentResult.toFixed(2);
+	updateDisplay();
+}
+
+function calInteger() {
+	memoryText += String(this.value);
+	if (!operation) {
+		numberA += String(this.value);
+		updateDisplay();
+	} else {
+		numberB += this.value;
+		calculate();
 	}
 }
 
-function calInteger(btn) {
-	if (numberA === 0) {
-		numberA = btn.value;
-	}
+function calOperation() {
+	numberB = "";
+	memoryText += String(symbol[this.value]);
+	operation = String(this.value);
+	updateDisplay();
 }
 
-const btns = document.querySelectorAll("button");
-for (const btn in btns) {
-	if (Number.isInteger(btn.value)) {
-		btn.addEventListener("click", () => calculate());
+function updateDisplay() {
+	memory.textContent = memoryText;
+	console.log(currentResult[-1]);
+	if (currentResult) {
+		if (currentResult[-1] === 0) {
+			if (currentResult[-2] === 0) {
+				currentResult.slice[-2];
+			}
+			currentResult.slice[-1];
+		}
+		display.textContent = currentResult;
 	}
+	//display.textContent = ` ${numberA} ${symbol[operation]} ${numberB}`;
 }
+
+for (const btn of numberBtns) {
+	btn.addEventListener("click", calInteger);
+}
+for (const btn of opBtns) {
+	btn.addEventListener("click", calOperation);
+}
+
+equal.addEventListener("click", calculate);

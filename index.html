@@ -4,44 +4,50 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js"></script>
+    <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1 class="header">Calculator</h1>
+    <h3 class="header">Calculator</h3>
 <div class="container">
-<table>
-    <tr>
-        <td><button value="Clear">C</button><td>
-        <td><button value="divide">/</button><td>
-        <td><button value="multiply">x</button><td>
-        <td><button value="backtrack"><-</button><td>
-    </tr>
-    <tr>
-        <td><button value="7">7</button><td>
-        <td><button value="8">8</button><td>
-        <td><button value="9">9</button><td>
-        <td><button value="subtract">-</button><td>
-    </tr>
-    <tr>
-        <td><button value="4">4</button><td>
-        <td><button value="5">5</button><td>
-        <td><button value="6">6</button><td>
-        <td><button value="add">+</button><td>
-    </tr>
-    <tr>
-        <td><button value="1">1</button><td>
-        <td><button value="2">2</button><td>
-        <td><button value="3">3</button><td>
-        <td rowspan="2"><button value="equal" id="equal">=</button><td>
-    </tr>
-    <tr>
-        <td><button value="Percent">%</button><td>
-        <td><button value="0">0</button><td>
-        <td><button value=".">.</button><td>
-    </tr>
-</table>
+    <div class="memory">
+        <p></p>
+    </div>
+    <div class="display">
+        <p>0</p>
+    </div>
+    <table>
+        <tr>
+            <td><button class="operations" value="Clear">C</button><td>
+            <td><button class="operations op" value="divide">/</button><td>
+            <td><button class="operations op" value="multiply">x</button><td>
+            <td><button class="operations" value="backtrack"><-</button><td>
+        </tr>
+        <tr>
+            <td><button class="numbers" value="7">7</button><td>
+            <td><button class="numbers" value="8">8</button><td>
+            <td><button class="numbers" value="9">9</button><td>
+            <td><button class="operations op" value="subtract">-</button><td>
+        </tr>
+        <tr>
+            <td><button class="numbers" value="4">4</button><td>
+            <td><button class="numbers" value="5">5</button><td>
+            <td><button class="numbers" value="6">6</button><td>
+            <td><button class="operations op" value="add">+</button><td>
+        </tr>
+        <tr>
+            <td><button class="numbers" value="1">1</button><td>
+            <td><button class="numbers" value="2">2</button><td>
+            <td><button class="numbers" value="3">3</button><td>
+            <td rowspan="2"><button value="equal" id="equal">=</button><td>
+        </tr>
+        <tr>
+            <td><button class="operations" value="Percent">%</button><td>
+            <td><button class="numbers" value="0">0</button><td>
+            <td><button class="operations" value=".">.</button><td>
+        </tr>
+    </table>
 
 </div>
 
