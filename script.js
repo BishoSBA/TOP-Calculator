@@ -2,7 +2,7 @@ let numberA = "";
 let numberB = "";
 let operation = "";
 let memoryText = "";
-let currentResult = "";
+let currentResult = "0";
 const symbol = {
 	add: "+",
 	subtract: "-",
@@ -14,6 +14,8 @@ const display = document.querySelector(".display p");
 const numberBtns = document.querySelectorAll(".numbers");
 const opBtns = document.querySelectorAll(".op");
 const equal = document.querySelector("#equal");
+const clearC = document.querySelector("#clear");
+const backtrack = document.querySelector("#backtrack");
 
 function calculate() {
 	let a = 0;
@@ -23,26 +25,30 @@ function calculate() {
 	} else {
 		a = parseFloat(numberA);
 	}
-	b = parseFloat(numberB);
-	console.log(a, b);
-	switch (operation) {
-		case "add":
-			currentResult = a + b;
-			break;
-		case "subtract":
-			currentResult = a - b;
-			break;
-		case "multiply":
-			currentResult = a * b;
-			break;
-		case "divide":
-			currentResult = a / b;
-			break;
+	if (numberB) {
+		b = parseFloat(numberB);
+		switch (operation) {
+			case "add":
+				currentResult = a + b;
+				break;
+			case "subtract":
+				currentResult = a - b;
+				break;
+			case "multiply":
+				currentResult = a * b;
+				break;
+			case "divide":
+				currentResult = a / b;
+				break;
+		}
+		currentResult = currentResult.toFixed(1);
 	}
-	currentResult = currentResult.toFixed(2);
+	memoryText = currentResult;
 	updateDisplay();
+	numberB = "";
 }
 
+//process integer buttons
 function calInteger() {
 	memoryText += String(this.value);
 	if (!operation) {
@@ -50,20 +56,23 @@ function calInteger() {
 		updateDisplay();
 	} else {
 		numberB += this.value;
-		calculate();
+		updateDisplay();
 	}
 }
 
+//processes operative functions
 function calOperation() {
-	numberB = "";
-	memoryText += String(symbol[this.value]);
+	calculate();
+	if (!["+", "-", "*", "/"].includes(memoryText.slice(-1))) {
+		memoryText += String(symbol[this.value]);
+	}
 	operation = String(this.value);
 	updateDisplay();
 }
 
+//updates display and memory bars
 function updateDisplay() {
 	memory.textContent = memoryText;
-	console.log(currentResult[-1]);
 	if (currentResult) {
 		if (currentResult[-1] === 0) {
 			if (currentResult[-2] === 0) {
@@ -71,9 +80,16 @@ function updateDisplay() {
 			}
 			currentResult.slice[-1];
 		}
-		display.textContent = currentResult;
 	}
-	//display.textContent = ` ${numberA} ${symbol[operation]} ${numberB}`;
+	display.textContent = currentResult;
+}
+
+function clear() {
+	numberA = "";
+	numberB = "";
+	memoryText = "";
+	currentResult = "0";
+	updateDisplay();
 }
 
 for (const btn of numberBtns) {
@@ -84,3 +100,4 @@ for (const btn of opBtns) {
 }
 
 equal.addEventListener("click", calculate);
+clearC.addEventListener("click", clear);
