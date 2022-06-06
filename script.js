@@ -27,6 +27,7 @@ function calculate() {
 	}
 	if (numberB) {
 		b = parseFloat(numberB);
+		memoryText = `${currentResult} ${symbol(operation) ${numberB}}`;
 		switch (operation) {
 			case "add":
 				currentResult = a + b;
@@ -38,12 +39,14 @@ function calculate() {
 				currentResult = a * b;
 				break;
 			case "divide":
+				if (b === 0) {
+					currentResult = "dividing by 0 :/";
+				}
 				currentResult = a / b;
 				break;
 		}
 		currentResult = currentResult.toFixed(1);
 	}
-	memoryText = currentResult;
 	updateDisplay();
 	numberB = "";
 }
