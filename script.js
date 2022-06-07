@@ -11,10 +11,7 @@ const symbol = {
 };
 const memory = document.querySelector(".memory p");
 const display = document.querySelector(".display p");
-const numberBtns = document.querySelectorAll(".numbers");
-const opBtns = document.querySelectorAll(".op");
-const equal = document.querySelector("#equal");
-const clearC = document.querySelector("#clear");
+const btns = document.querySelectorAll("button");
 const backtrack = document.querySelector("#backtrack");
 const keyboard = {
 	27: "clear",
@@ -51,35 +48,30 @@ function calculate() {
 				currentResult = a / b;
 				break;
 		}
-		// if (!isInt(currentResult)) {
-		// 	currentResult = currentResult.toFixed(1);
-		// } else {
-		// 	currentResult = currentResult.toFixed(0);
-		// }
 	}
 	updateDisplay();
 	numberB = "";
 }
 
 //process integer buttons
-function calInteger() {
-	memoryText += String(this.value);
+function calInteger(btn) {
+	memoryText += String(btn.value);
 	if (!operation) {
-		numberA += String(this.value);
+		numberA += String(btn.value);
 		updateDisplay();
 	} else {
-		numberB += this.value;
+		numberB += btn.value;
 		updateDisplay();
 	}
 }
 
 //processes operative functions
-function calOperation() {
+function calOperation(btn) {
 	calculate();
 	if (!["+", "-", "*", "/"].includes(memoryText.slice(-1))) {
-		memoryText += String(symbol[this.value]);
+		memoryText += String(symbol[btn.value]);
 	}
-	operation = String(this.value);
+	operation = String(btn.value);
 	updateDisplay();
 }
 
@@ -107,22 +99,16 @@ function isInt(num) {
 	return result;
 }
 
-for (const btn of numberBtns) {
-	btn.addEventListener("click", calInteger);
-}
-for (const btn of opBtns) {
-	btn.addEventListener("click", calOperation);
+for (const btn of btns) {
+	btn.addEventListener("click", btnController);
 }
 
-equal.addEventListener("click", calculate);
-clearC.addEventListener("click", clear);
-
-function keyboardSupport() {
+function btnController() {
 	if (this.classList.contains("numbers")) {
-		calInteger();
+		calInteger(this);
 		return;
 	} else if (this.classList.contains("op")) {
-		calOperation();
+		calOperation(this);
 		return;
 	} else if (this.id === "equal") {
 		calculate();
@@ -133,3 +119,5 @@ function keyboardSupport() {
 	}
 	return;
 }
+
+//window.addEventListener("keydown", keyboardSupport)
