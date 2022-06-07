@@ -8,28 +8,28 @@ const symbol = {
 	subtract: "-",
 	multiply: "x",
 	divide: "/",
+	equal: "",
 };
 const memory = document.querySelector(".memory p");
 const display = document.querySelector(".display p");
 const btns = document.querySelectorAll("button");
 const backtrack = document.querySelector("#backtrack");
-const keyboard = {
-	27: "clear",
-	191: "divide",
-};
 
-function calculate() {
+function calculate(btn) {
 	let a = 0;
 	let b = 0;
 	if (+currentResult) {
 		a = +currentResult;
 	} else {
 		a = +numberA;
-		currentResult = a;
+	}
+	memoryText = String(a);
+	if (!["+", "-", "*", "/", "."].includes(memoryText.slice(-1))) {
+		memoryText += String(symbol[operation]);
 	}
 	if (numberB) {
 		b = +numberB;
-		memoryText = currentResult + symbol[operation] + numberB;
+		memoryText += numberB + String(symbol[btn.value]);
 		switch (operation) {
 			case "add":
 				currentResult = a + b;
@@ -55,6 +55,7 @@ function calculate() {
 
 //process integer buttons
 function calInteger(btn) {
+	if (btn.value === "." && memoryText.includes(".")) return;
 	memoryText += String(btn.value);
 	if (!operation) {
 		numberA += String(btn.value);
@@ -67,10 +68,10 @@ function calInteger(btn) {
 
 //processes operative functions
 function calOperation(btn) {
-	calculate();
-	if (!["+", "-", "*", "/"].includes(memoryText.slice(-1))) {
-		memoryText += String(symbol[btn.value]);
+	if (!operation) {
+		operation = String(btn.value);
 	}
+	calculate(btn);
 	operation = String(btn.value);
 	updateDisplay();
 }
@@ -90,7 +91,8 @@ function clear() {
 	numberA = "";
 	numberB = "";
 	memoryText = "";
-	currentResult = "0";
+	operation = "";
+	currentResult = "";
 	updateDisplay();
 }
 
@@ -111,7 +113,7 @@ function btnController() {
 		calOperation(this);
 		return;
 	} else if (this.id === "equal") {
-		calculate();
+		calculate(this);
 		return;
 	} else if (this.id === "clear") {
 		clear();
@@ -120,4 +122,11 @@ function btnController() {
 	return;
 }
 
-//window.addEventListener("keydown", keyboardSupport)
+function keyboardSupport(e) {
+	console.log(e.keyCode);
+	const btn = document.querySelector(`[data-key="${e.keyCode}"]`);
+	if (!btn) return;
+	btn.click();
+}
+
+window.addEventListener("keydown", keyboardSupport);
