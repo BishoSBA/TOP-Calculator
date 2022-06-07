@@ -16,18 +16,23 @@ const opBtns = document.querySelectorAll(".op");
 const equal = document.querySelector("#equal");
 const clearC = document.querySelector("#clear");
 const backtrack = document.querySelector("#backtrack");
+const keyboard = {
+	27: "clear",
+	191: "divide",
+};
 
 function calculate() {
 	let a = 0;
 	let b = 0;
-	if (currentResult) {
-		a = parseFloat(currentResult);
+	if (+currentResult) {
+		a = +currentResult;
 	} else {
-		a = parseFloat(numberA);
+		a = +numberA;
+		currentResult = a;
 	}
 	if (numberB) {
-		b = parseFloat(numberB);
-		memoryText = `${currentResult} ${symbol(operation) ${numberB}}`;
+		b = +numberB;
+		memoryText = currentResult + symbol[operation] + numberB;
 		switch (operation) {
 			case "add":
 				currentResult = a + b;
@@ -41,11 +46,16 @@ function calculate() {
 			case "divide":
 				if (b === 0) {
 					currentResult = "dividing by 0 :/";
+					return;
 				}
 				currentResult = a / b;
 				break;
 		}
-		currentResult = currentResult.toFixed(1);
+		// if (!isInt(currentResult)) {
+		// 	currentResult = currentResult.toFixed(1);
+		// } else {
+		// 	currentResult = currentResult.toFixed(0);
+		// }
 	}
 	updateDisplay();
 	numberB = "";
@@ -77,11 +87,8 @@ function calOperation() {
 function updateDisplay() {
 	memory.textContent = memoryText;
 	if (currentResult) {
-		if (currentResult[-1] === 0) {
-			if (currentResult[-2] === 0) {
-				currentResult.slice[-2];
-			}
-			currentResult.slice[-1];
+		if (currentResult[-1] === 0 && currentResult[-2] === ".") {
+			currentResult = currentResult.slice[-2];
 		}
 	}
 	display.textContent = currentResult;
@@ -95,6 +102,11 @@ function clear() {
 	updateDisplay();
 }
 
+function isInt(num) {
+	let result = +num - Math.floor(+num) !== 0;
+	return result;
+}
+
 for (const btn of numberBtns) {
 	btn.addEventListener("click", calInteger);
 }
@@ -104,3 +116,20 @@ for (const btn of opBtns) {
 
 equal.addEventListener("click", calculate);
 clearC.addEventListener("click", clear);
+
+function keyboardSupport() {
+	if (this.classList.contains("numbers")) {
+		calInteger();
+		return;
+	} else if (this.classList.contains("op")) {
+		calOperation();
+		return;
+	} else if (this.id === "equal") {
+		calculate();
+		return;
+	} else if (this.id === "clear") {
+		clear();
+		return;
+	}
+	return;
+}
