@@ -123,8 +123,8 @@ function btnController() {
 }
 
 function keyboardSupport(e) {
-	console.log(e.keyCode);
-	const btn = document.querySelector(`[data-key="${e.keyCode}"]`);
+	console.log(e.key);
+	const btn = document.querySelector(`[data-key="${e.key}"]`);
 	if (!btn) return;
 	btn.click();
 }
