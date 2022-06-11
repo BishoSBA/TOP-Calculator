@@ -10,7 +10,6 @@ Simple calculator project, part of The Odin Project curriculum - [DEMO](https://
 ## Tools
 * Git / Github - project management
 * VScode - Editor
-* Vanilla Javascript
 
 ## Summary
 
