@@ -1,6 +1,6 @@
 # Calculator
 
-Simple calculator project, part of The Odin Project curriculum - [DEMO](https://bishosba.github.io/TOP-Calculator/)
+Simple calculator project, part of The Odin Project curriculum - [DEMO](https://bishosba.github.io/project-calculator/)
 
 ## Technologies used
 * HTML
