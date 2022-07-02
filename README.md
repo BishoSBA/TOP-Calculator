@@ -1,6 +1,6 @@
 # Calculator
 
-Simple calculator project, part of The Odin Project curriculum
+Simple calculator project, part of The Odin Project curriculum - [DEMO](https://bishosba.github.io/project-calculator/)
 
 ## Technologies used
 * HTML
@@ -10,7 +10,6 @@ Simple calculator project, part of The Odin Project curriculum
 ## Tools
 * Git / Github - project management
 * VScode - Editor
-* Vanilla Javascript
 
 ## Summary
 
