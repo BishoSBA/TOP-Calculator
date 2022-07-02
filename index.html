@@ -1,59 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+    <title>Calculator</title>
 </head>
+
 <body>
     <header>
         <h3 class="header">Calculator</h3>
     </header>
-<div class="container">
-    <div class="memory">
-        <p></p>
+    <div class="container">
+        <div class="memory">
+            <p></p>
+        </div>
+        <div class="display">
+            <p>0</p>
+        </div>
+        <table>
+            <tr>
+                <td><button type="button" data-key="Escape" class="operations" id="clear" value="clear">C</button>
+                <td>
+                <td><button type="button" data-key="/" class="operations op" value="divide">/</button>
+                <td>
+                <td><button type="button" data-key="*" class="operations op" value="multiply">x</button>
+                <td>
+                <td><button type="button" data-key="Backspace" class="operations" id="backtrack" value="backtrack">
+                        <-< /button>
+                <td>
+            </tr>
+            <tr>
+                <td><button type="button" data-key="7" class="numbers" value="7">7</button>
+                <td>
+                <td><button type="button" data-key="8" class="numbers" value="8">8</button>
+                <td>
+                <td><button type="button" data-key="9" class="numbers" value="9">9</button>
+                <td>
+                <td><button type="button" data-key="-" class="operations op" value="subtract">-</button>
+                <td>
+            </tr>
+            <tr>
+                <td><button type="button" data-key="4" class="numbers" value="4">4</button>
+                <td>
+                <td><button type="button" data-key="5" class="numbers" value="5">5</button>
+                <td>
+                <td><button type="button" data-key="6" class="numbers" value="6">6</button>
+                <td>
+                <td><button type="button" data-key="+" class="operations op" value="add">+</button>
+                <td>
+            </tr>
+            <tr>
+                <td><button type="button" data-key="1" class="numbers" value="1">1</button>
+                <td>
+                <td><button type="button" data-key="2" class="numbers" value="2">2</button>
+                <td>
+                <td><button type="button" data-key="3" class="numbers" value="3">3</button>
+                <td>
+                <td rowspan="13"><button type="button" data-key="=" value="equal" id="equal">=</button>
+                <td>
+            </tr>
+            <tr>
+                <td><button type="button" data-key="" class="operations" value="Percent">%</button>
+                <td>
+                <td><button type="button" data-key="0" class="numbers" value="0">0</button>
+                <td>
+                <td><button type="button" data-key="." class="numbers" value=".">.</button>
+                <td>
+            </tr>
+        </table>
+        <footer>
+            <div class="copyright">Built by <a href="https://github.com/BishoSBA">BishoSBA</a> | <a
+                    href="https://github.com/BishoSBA/TOP-Calculator">Source code</a></div>
+        </footer>
     </div>
-    <div class="display">
-        <p>0</p>
-    </div>
-    <table>
-        <tr>
-            <td><button type="button" data-key="Escape" class="operations" id="clear" value="clear">C</button><td>
-            <td><button type="button" data-key="/" class="operations op" value="divide">/</button><td>
-            <td><button type="button" data-key="*" class="operations op" value="multiply">x</button><td>
-            <td><button type="button" data-key="Backspace" class="operations" id="backtrack" value="backtrack"><-</button><td>
-        </tr>
-        <tr>
-            <td><button type="button" data-key="7" class="numbers" value="7">7</button><td>
-            <td><button type="button" data-key="8" class="numbers" value="8">8</button><td>
-            <td><button type="button" data-key="9" class="numbers" value="9">9</button><td>
-            <td><button type="button" data-key="-" class="operations op" value="subtract">-</button><td>
-        </tr>
-        <tr>
-            <td><button type="button" data-key="4" class="numbers" value="4">4</button><td>
-            <td><button type="button" data-key="5" class="numbers" value="5">5</button><td>
-            <td><button type="button" data-key="6" class="numbers" value="6">6</button><td>
-            <td><button type="button" data-key="+" class="operations op" value="add">+</button><td>
-        </tr>
-        <tr>
-            <td><button type="button" data-key="1" class="numbers" value="1">1</button><td>
-            <td><button type="button" data-key="2" class="numbers" value="2">2</button><td>
-            <td><button type="button" data-key="3" class="numbers" value="3">3</button><td>
-            <td rowspan="13"><button type="button" data-key="=" value="equal" id="equal">=</button><td>
-        </tr>
-        <tr>
-            <td><button type="button" data-key="" class="operations" value="Percent">%</button><td>
-            <td><button type="button" data-key="0" class="numbers" value="0">0</button><td>
-            <td><button type="button" data-key="." class="numbers" value=".">.</button><td>
-        </tr>
-    </table>
-    <footer>
-        <div class="copyright">Built by <a href="https://github.com/BishoSBA">BishoSBA</a> | <a href="https://github.com/BishoSBA/TOP-Calculator">Source code</a></div>
-    </footer>
-</div>
-    
+
 </body>
+
 </html>
